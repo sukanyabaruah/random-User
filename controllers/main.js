@@ -17,7 +17,7 @@ const getAllTasks = async(req, res) => {
 
 const getUsers = async(req,res) => {
     try {
-        fetch("https://randomuser.me/api/?results=5")
+        fetch("https://randomuser.me/api/?results=10")
         .then((results) => {
           return results.json();
         })
@@ -34,7 +34,7 @@ const getUsers = async(req,res) => {
   
     const finalObj = {};
   
-    const users = randomUser.results.map(({name: { title, first, last},dob:{date},email}) => `Name: ${title} ${first} ${last} , Email: ${email}, DOB: ${date}`);
+    const users = randomUser.results.map(({name: { title, first, last},dob:{date},email}) => `Name: ${title} ${first} ${last} , Email: ${email}, DOB:${new Date(date).getFullYear()}-${new Date(date).getMonth()}-${new Date(date).getDate()}`);
     
     finalObj["data"] = users
   
